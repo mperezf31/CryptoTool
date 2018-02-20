@@ -1,18 +1,18 @@
 package com.mperezf.cryptotool.presentation.di.module
 
 import android.content.res.Resources
-
 import com.mperezf.cryptotool.CryptoToolApp
+import com.mperezf.cryptotool.data.DefaultRepository
+import com.mperezf.cryptotool.data.remote.RemoteDataStore
+import com.mperezf.cryptotool.domain.dataproviders.Repository
 import com.mperezf.cryptotool.presentation.Navigation
-
-import javax.inject.Named
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Named
+import javax.inject.Singleton
 
 /**
  * Application module
@@ -50,5 +50,11 @@ class AppModule(private val mApplication: CryptoToolApp) {
     @Provides
     fun provideResources(): Resources {
         return mApplication.resources
+    }
+
+    @Singleton
+    @Provides
+    internal fun provideRepository(remoteDataStore: RemoteDataStore): Repository {
+        return DefaultRepository(remoteDataStore)
     }
 }
