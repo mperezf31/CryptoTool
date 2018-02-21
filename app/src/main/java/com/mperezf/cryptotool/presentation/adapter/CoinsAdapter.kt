@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.mperezf.cryptotool.R
 import com.mperezf.cryptotool.domain.model.Coin
 import com.mperezf.cryptotool.presentation.view.CoinView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.coin_row.view.*
 
 
@@ -33,6 +34,7 @@ class CoinsAdapter(private val mCoins: List<Coin>,
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         @SuppressLint("SetTextI18n")
         fun bind(coin: Coin, itemClick: CoinView.CoinSelectedListener) {
+            Picasso.with(itemView.context).load(coin.image).error(R.drawable.ic_bitcoin).into(itemView.ivCoin)
             itemView.tvCoinName.text = coin.name
             itemView.tvPrice.text = "$ " + coin.price_usd
             itemView.tcTitleRelationBTC.text = coin.symbol + "/BTC"
