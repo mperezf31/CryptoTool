@@ -27,6 +27,7 @@ object Navigation {
         if (fragmentManager == null) return
         fragmentManager.beginTransaction()
                 .replace(R.id.main_content, ChartFragment.newInstance(coin), ExchangeFragment.FRAGMENT_TAG)
+                .addToBackStack(ExchangeFragment.FRAGMENT_TAG)
                 .commit()
     }
 
