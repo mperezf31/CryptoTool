@@ -8,4 +8,9 @@ interface CoinView : BaseView{
     fun onError(message : String?)
     fun onShowLoading()
     fun onHideLoading()
+
+
+    interface CoinSelectedListener {
+        fun onCoinSelected(coin: Coin)
+    }
 }

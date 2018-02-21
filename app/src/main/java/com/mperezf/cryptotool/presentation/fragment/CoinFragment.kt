@@ -1,23 +1,24 @@
 package com.mperezf.cryptotool.presentation.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mperezf.cryptotool.R
 import com.mperezf.cryptotool.domain.model.Coin
+import com.mperezf.cryptotool.presentation.adapter.CoinsAdapter
 import com.mperezf.cryptotool.presentation.presenter.CoinPresenter
 import com.mperezf.cryptotool.presentation.view.CoinView
+import kotlinx.android.synthetic.main.fragment_coin.*
 import javax.inject.Inject
 
-class CoinFragment : BaseFragment(), CoinView {
+class CoinFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener {
 
     companion object {
         val FRAGMENT_TAG = "coin_fragment"
     }
 
-    @Inject public lateinit var coinPresenter: CoinPresenter
+    @Inject lateinit var mCoinPresenter: CoinPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +27,8 @@ class CoinFragment : BaseFragment(), CoinView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        coinPresenter.attach(this)
-        coinPresenter.getCoins()
+        mCoinPresenter.attach(this)
+        mCoinPresenter.getCoins()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,21 +37,25 @@ class CoinFragment : BaseFragment(), CoinView {
 
     override fun onDestroy() {
         super.onDestroy()
-        coinPresenter.detach()
+        mCoinPresenter.detach()
     }
 
     override fun showCoins(coins: List<Coin>) {
-        Log.e("", "------------>")
+        rvCoins.adapter = CoinsAdapter(coins, this)
+    }
+
+    override fun onCoinSelected(coin: Coin) {
+
     }
 
     override fun onError(message: String?) {
     }
 
     override fun onHideLoading() {
-    
+
     }
 
     override fun onShowLoading() {
-       
+
     }
 }
