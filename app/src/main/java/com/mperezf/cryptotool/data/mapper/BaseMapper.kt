@@ -1,5 +1,6 @@
 package com.mperezf.cryptotool.data.mapper
 
+import com.mperezf.cryptotool.domain.model.Coin
 import io.reactivex.functions.Function
 import java.util.*
 

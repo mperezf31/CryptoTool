@@ -31,7 +31,7 @@ class CoinsAdapter(private val mCoins: List<Coin>,
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(coin: Coin, itemClick: CoinView.CoinSelectedListener) {
-            itemView.tvCoinName.text = "hello"
+            itemView.tvCoinName.text = coin.name
             itemView.setOnClickListener { itemClick.onCoinSelected(coin) }
         }
     }
