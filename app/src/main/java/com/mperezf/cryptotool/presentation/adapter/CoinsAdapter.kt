@@ -35,7 +35,7 @@ class CoinsAdapter(private val mCoins: List<Coin>,
         fun bind(coin: Coin, itemClick: CoinView.CoinSelectedListener) {
             itemView.tvCoinName.text = coin.name
             itemView.tvPrice.text = "$ " + coin.price_usd
-            itemView.tcTitleRelationBTC.text = "BTC/"+ coin.symbol
+            itemView.tcTitleRelationBTC.text = coin.symbol + "/BTC"
             itemView.tcValueRelationBTC.text = coin.priceBtc
             itemView.setOnClickListener { itemClick.onCoinSelected(coin) }
         }
