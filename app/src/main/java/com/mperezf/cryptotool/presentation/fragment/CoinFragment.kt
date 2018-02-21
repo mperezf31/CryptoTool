@@ -2,9 +2,7 @@ package com.mperezf.cryptotool.presentation.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.mperezf.cryptotool.R
 import com.mperezf.cryptotool.domain.model.Coin
 import com.mperezf.cryptotool.presentation.adapter.CoinsAdapter
@@ -28,6 +26,7 @@ class CoinFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         rvCoins.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         mCoinPresenter.attach(this)
         mCoinPresenter.getCoins()
@@ -35,6 +34,21 @@ class CoinFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_coin, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_update -> {
+                mCoinPresenter.getCoins()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onDestroy() {
