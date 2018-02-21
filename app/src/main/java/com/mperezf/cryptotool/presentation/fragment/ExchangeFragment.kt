@@ -5,18 +5,21 @@ import android.support.v7.widget.DividerItemDecoration
 import android.view.*
 import com.mperezf.cryptotool.R
 import com.mperezf.cryptotool.domain.model.Coin
+import com.mperezf.cryptotool.domain.model.Exchange
 import com.mperezf.cryptotool.presentation.adapter.CoinsAdapter
-import com.mperezf.cryptotool.presentation.presenter.CoinPresenter
+import com.mperezf.cryptotool.presentation.presenter.ExchangePresenter
 import com.mperezf.cryptotool.presentation.view.CoinView
+import com.mperezf.cryptotool.presentation.view.ExchangeView
+import kotlinx.android.synthetic.main.fragment_exchange.*
 import javax.inject.Inject
 
-class ExchangeFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener {
+class ExchangeFragment : BaseFragment(), ExchangeView, CoinView.CoinSelectedListener {
 
     companion object {
-        val FRAGMENT_TAG = "coin_fragment"
+        val FRAGMENT_TAG = "exchange_fragment"
     }
 
-    @Inject lateinit var mCoinPresenter: CoinPresenter
+    @Inject lateinit var mExchangePresenter: ExchangePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +29,13 @@ class ExchangeFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        rvCoins.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        mCoinPresenter.attach(this)
-        mCoinPresenter.getCoins()
+        rvExchanges.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        mExchangePresenter.attach(this)
+        mExchangePresenter.getExchanges()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_coin, container, false)
+        return inflater!!.inflate(R.layout.fragment_exchange, container, false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -43,7 +46,7 @@ class ExchangeFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_update -> {
-                mCoinPresenter.getCoins()
+                mExchangePresenter.getExchanges()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -52,11 +55,11 @@ class ExchangeFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener
 
     override fun onDestroy() {
         super.onDestroy()
-        mCoinPresenter.detach()
+        mExchangePresenter.detach()
     }
 
-    override fun showCoins(coins: List<Coin>) {
-        rvCoins.adapter = CoinsAdapter(coins, this)
+    override fun showExchange(exchanges: List<Exchange>) {
+        //rvExchanges.adapter = CoinsAdapter(coins, this)
     }
 
     override fun onCoinSelected(coin: Coin) {
