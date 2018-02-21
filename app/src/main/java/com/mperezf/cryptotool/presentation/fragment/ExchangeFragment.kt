@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.view.*
 import com.mperezf.cryptotool.R
-import com.mperezf.cryptotool.domain.model.Coin
 import com.mperezf.cryptotool.domain.model.Exchange
+import com.mperezf.cryptotool.presentation.adapter.ExchangeAdapter
 import com.mperezf.cryptotool.presentation.presenter.ExchangePresenter
-import com.mperezf.cryptotool.presentation.view.CoinView
 import com.mperezf.cryptotool.presentation.view.ExchangeView
 import kotlinx.android.synthetic.main.fragment_exchange.*
 import javax.inject.Inject
 
-class ExchangeFragment : BaseFragment(), ExchangeView, CoinView.CoinSelectedListener {
+class ExchangeFragment : BaseFragment(), ExchangeView, ExchangeView.ExchangeSelectedListener {
 
     companion object {
         val FRAGMENT_TAG = "exchange_fragment"
@@ -58,10 +57,10 @@ class ExchangeFragment : BaseFragment(), ExchangeView, CoinView.CoinSelectedList
     }
 
     override fun showExchange(exchanges: List<Exchange>) {
-        //rvExchanges.adapter = CoinsAdapter(coins, this)
+        rvExchanges.adapter = ExchangeAdapter(exchanges, this)
     }
 
-    override fun onCoinSelected(coin: Coin) {
+    override fun onExchangeSelected(exchange: Exchange) {
 
     }
 
