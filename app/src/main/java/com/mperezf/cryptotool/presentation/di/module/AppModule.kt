@@ -54,7 +54,7 @@ class AppModule(private val mApplication: CryptoToolApp) {
 
     @Singleton
     @Provides
-    internal fun provideRepository(remoteDataStore: RemoteDataStore): Repository {
+    internal fun provideRepository(remoteDataStore: RemoteDataStore): DefaultRepository {
         return DefaultRepository(remoteDataStore)
     }
 }

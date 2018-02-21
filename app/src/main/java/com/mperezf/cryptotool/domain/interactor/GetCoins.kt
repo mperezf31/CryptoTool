@@ -2,16 +2,12 @@ package com.mperezf.cryptotool.domain.interactor
 
 import com.mperezf.cryptotool.domain.dataproviders.Repository
 import com.mperezf.cryptotool.domain.model.Coin
-
-import javax.inject.Inject
-
 import io.reactivex.Observable
+import io.reactivex.Scheduler
 
-class GetCoins : BaseInteractor<List<Coin>, Void>() {
+class GetCoins constructor(private val mRepository: Repository, mMainThread: Scheduler, mIOExecutor: Scheduler) : BaseInteractor<List<Coin>, Int>(mMainThread, mIOExecutor) {
 
-    @Inject var mRepository: Repository? = null
-
-    override fun result(params: Void): Observable<List<Coin>> {
-        return mRepository!!.coins
+    override fun result(params: Int): Observable<List<Coin>> {
+        return mRepository.coins
     }
 }

@@ -23,7 +23,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
 
         if (savedInstanceState == null) {
-            nav_view.setCheckedItem(R.id.nav_coins)
+            mNavigation.showCoinFragment(fragmentManager)
         }
     }
 
