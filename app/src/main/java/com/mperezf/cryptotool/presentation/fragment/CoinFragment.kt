@@ -54,10 +54,10 @@ class CoinFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener {
     }
 
     override fun onHideLoading() {
-
+        progressBar.visibility = View.GONE
     }
 
     override fun onShowLoading() {
-
+        progressBar.visibility = View.VISIBLE
     }
 }
