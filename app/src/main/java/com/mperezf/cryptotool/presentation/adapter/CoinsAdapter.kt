@@ -1,5 +1,6 @@
 package com.mperezf.cryptotool.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -30,8 +31,12 @@ class CoinsAdapter(private val mCoins: List<Coin>,
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
+        @SuppressLint("SetTextI18n")
         fun bind(coin: Coin, itemClick: CoinView.CoinSelectedListener) {
             itemView.tvCoinName.text = coin.name
+            itemView.tvPrice.text = "$ " + coin.price_usd
+            itemView.tcTitleRelationBTC.text = "BTC/"+ coin.symbol
+            itemView.tcValueRelationBTC.text = coin.priceBtc
             itemView.setOnClickListener { itemClick.onCoinSelected(coin) }
         }
     }

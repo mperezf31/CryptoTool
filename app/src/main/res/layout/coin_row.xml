@@ -5,17 +5,63 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_money" />
 
     <TextView
         android:id="@+id/tvCoinName"
-        android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="6dp"
+        android:layout_width="wrap_content"
+        android:text="Name"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/tcTitleRelationBTC"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_width="wrap_content"
+        android:text="Price"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/tcValueRelationBTC"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvCoinName"
+        app:layout_constraintTop_toBottomOf="@+id/tvCoinName" />
+
+    <TextView
+        android:id="@+id/tcTitleRelationBTC"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_width="wrap_content"
+        android:text="BTC/BTC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tcValueRelationBTC"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:layout_width="wrap_content"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/tcTitleRelationBTC"
+        app:layout_constraintTop_toBottomOf="@+id/tcTitleRelationBTC" />
 
 </android.support.constraint.ConstraintLayout>
