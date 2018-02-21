@@ -42,7 +42,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 mNavigation.showCoinFragment(fragmentManager)
             }
             R.id.nav_exchange -> {
-
+                mNavigation.showExchangeFragment(fragmentManager)
             }
             R.id.nav_share -> {
 

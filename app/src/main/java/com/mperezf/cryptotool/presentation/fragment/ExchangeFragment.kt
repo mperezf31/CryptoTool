@@ -6,7 +6,6 @@ import android.view.*
 import com.mperezf.cryptotool.R
 import com.mperezf.cryptotool.domain.model.Coin
 import com.mperezf.cryptotool.domain.model.Exchange
-import com.mperezf.cryptotool.presentation.adapter.CoinsAdapter
 import com.mperezf.cryptotool.presentation.presenter.ExchangePresenter
 import com.mperezf.cryptotool.presentation.view.CoinView
 import com.mperezf.cryptotool.presentation.view.ExchangeView
