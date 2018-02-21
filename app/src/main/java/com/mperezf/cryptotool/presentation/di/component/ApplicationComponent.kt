@@ -6,6 +6,7 @@ import com.mperezf.cryptotool.presentation.di.module.InteractorModule
 import com.mperezf.cryptotool.presentation.di.module.NetworkModule
 import com.mperezf.cryptotool.presentation.di.module.PresenterModule
 import com.mperezf.cryptotool.presentation.fragment.CoinFragment
+import com.mperezf.cryptotool.presentation.fragment.ExchangeFragment
 
 import javax.inject.Singleton
 
@@ -19,4 +20,5 @@ import dagger.Component
 interface ApplicationComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(fragment: CoinFragment)
+    fun inject(fragment: ExchangeFragment)
 }
