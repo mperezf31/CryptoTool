@@ -5,6 +5,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.view.*
 import com.mperezf.cryptotool.R
 import com.mperezf.cryptotool.domain.model.Coin
+import com.mperezf.cryptotool.presentation.activity.BaseActivity
 import com.mperezf.cryptotool.presentation.adapter.CoinsAdapter
 import com.mperezf.cryptotool.presentation.presenter.CoinPresenter
 import com.mperezf.cryptotool.presentation.view.CoinView
@@ -26,6 +27,8 @@ class CoinFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity.title = getString(R.string.app_name)
+
         setHasOptionsMenu(true)
         rvCoins.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         mCoinPresenter.attach(this)
@@ -61,7 +64,7 @@ class CoinFragment : BaseFragment(), CoinView, CoinView.CoinSelectedListener {
     }
 
     override fun onCoinSelected(coin: Coin) {
-
+        mNavigation.showChartFragment(coin,fragmentManager)
     }
 
     override fun onError(message: String?) {
