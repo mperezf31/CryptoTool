@@ -5,6 +5,7 @@ import com.mperezf.cryptotool.presentation.di.module.AppModule
 import com.mperezf.cryptotool.presentation.di.module.InteractorModule
 import com.mperezf.cryptotool.presentation.di.module.NetworkModule
 import com.mperezf.cryptotool.presentation.di.module.PresenterModule
+import com.mperezf.cryptotool.presentation.fragment.ChartFragment
 import com.mperezf.cryptotool.presentation.fragment.CoinFragment
 import com.mperezf.cryptotool.presentation.fragment.ExchangeFragment
 
@@ -21,4 +22,5 @@ interface ApplicationComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(fragment: CoinFragment)
     fun inject(fragment: ExchangeFragment)
+    fun inject(fragment: ChartFragment)
 }

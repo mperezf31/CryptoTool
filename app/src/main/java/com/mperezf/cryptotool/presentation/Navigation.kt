@@ -9,15 +9,17 @@ import com.mperezf.cryptotool.presentation.fragment.ExchangeFragment
 
 object Navigation {
 
-    fun showCoinFragment(supportFragmentManager: FragmentManager?) {
-        if (supportFragmentManager == null) return
-        supportFragmentManager.beginTransaction()
+    fun showCoinFragment(fragmentManager: FragmentManager?) {
+        if (fragmentManager == null) return
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fragmentManager.beginTransaction()
                 .replace(R.id.main_content, CoinFragment(), CoinFragment.FRAGMENT_TAG)
                 .commit()
     }
 
     fun showExchangeFragment(fragmentManager: FragmentManager?) {
         if (fragmentManager == null) return
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fragmentManager.beginTransaction()
                 .replace(R.id.main_content, ExchangeFragment(), ExchangeFragment.FRAGMENT_TAG)
                 .commit()

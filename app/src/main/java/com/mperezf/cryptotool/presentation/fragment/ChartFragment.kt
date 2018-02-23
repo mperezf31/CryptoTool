@@ -1,7 +1,6 @@
 package com.mperezf.cryptotool.presentation.fragment
 
 
-import android.app.Fragment
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,10 +13,13 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.mperezf.cryptotool.R
 import com.mperezf.cryptotool.domain.model.Coin
+import com.mperezf.cryptotool.presentation.presenter.ChartPresenter
+import com.mperezf.cryptotool.presentation.view.ChartView
 import kotlinx.android.synthetic.main.fragment_chart.*
+import javax.inject.Inject
 
 
-class ChartFragment : Fragment() {
+class ChartFragment : BaseFragment(), ChartView {
 
     companion object {
 
@@ -32,10 +34,12 @@ class ChartFragment : Fragment() {
         }
     }
 
+    @Inject lateinit var mChartPresenter: ChartPresenter
     private var mCoinData: Coin? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        component()?.inject(this)
         if (arguments != null) {
             mCoinData = arguments.getParcelable(ARG_PARAM1)
         }
@@ -47,43 +51,21 @@ class ChartFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mChartPresenter.attach(this)
         activity.title = mCoinData?.name
-        loadChart()
+        mChartPresenter.getCharData(coinData = mCoinData)
     }
 
-    private fun loadChart() {
-        val dataset = BarDataSet(getDataSet(), "Values")
+    override fun onDataSet(labels: ArrayList<String>?, dataSet: ArrayList<BarEntry>?) {
+        val dataset = BarDataSet(dataSet, "Values")
         dataset.color = Color.GRAY
         chart.data = BarData(dataset)
-        chart.xAxis.valueFormatter = MyXAxisValueFormatter(getLabels())
+        chart.xAxis.valueFormatter = MyXAxisValueFormatter(labels)
         chart.xAxis.granularity = 1f;
         chart.xAxis.setDrawGridLines(false)
         chart.axisRight.isEnabled = false
         chart.axisRight.setDrawGridLines(false)
         chart.animateY(3000)
-    }
-
-    private fun getDataSet(): ArrayList<BarEntry>? {
-        val data: ArrayList<BarEntry>? = ArrayList()
-        data?.add(BarEntry(0f, getValueBar(mCoinData?.percentChange7d!!)))
-        data?.add(BarEntry(1f, getValueBar(mCoinData?.percentChange24h!!)))
-        data?.add(BarEntry(2f, getValueBar(mCoinData?.percentChangeIh!!)))
-        data?.add(BarEntry(3f, mCoinData?.price_usd?.toFloat()!!))
-        return data
-    }
-
-    private fun getLabels(): ArrayList<String>? {
-        val labels: ArrayList<String>? = ArrayList()
-        labels?.add("1 Month ago")
-        labels?.add("1 Day ago")
-        labels?.add("7 Hours ago")
-        labels?.add("Now")
-        return labels
-    }
-
-    private fun getValueBar(percent: String): Float {
-        val valueChange=  mCoinData?.price_usd!!.toFloat() * percent.toFloat() / 100
-        return mCoinData?.price_usd!!.toFloat() + valueChange
     }
 
     inner class MyXAxisValueFormatter(private val mValues: ArrayList<String>?) : IAxisValueFormatter {
@@ -92,4 +74,5 @@ class ChartFragment : Fragment() {
             return mValues!![value.toInt()]
         }
     }
+
 }
