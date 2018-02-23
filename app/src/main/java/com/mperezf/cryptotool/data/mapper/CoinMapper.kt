@@ -19,7 +19,7 @@ class CoinMapper : BaseMapper<CoinData, Coin>() {
 
 
     private fun getColor(percent_change_1h: String?): Int {
-        if (java.lang.Double.parseDouble(percent_change_1h) > 0) {
+        if (percent_change_1h!!.toDouble() > 0) {
             return Color.parseColor("#228B22")
         } else
             return Color.parseColor("#7f0000")
