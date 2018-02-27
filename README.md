@@ -1,7 +1,7 @@
 # CryptoTool
 CryptoTool is an application developed in kotlin that allows you to see in real time the latest values of the most popular cryptocurrencies
 
-## Architecture
+## Architecture pattern
 [Model‑View‑Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP)
 
 ## Features
