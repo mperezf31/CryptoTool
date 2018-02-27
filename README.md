@@ -7,10 +7,14 @@ CryptoTool is an application developed in kotlin that allows you to see in real 
 * List of different  exchanges
 
 ## Captures
-<img src="captures/home.png" width="250" style="float: left; margin-right: 30px;"/>
-<img src="captures/menu.png" width="250""/>
-<img src="captures/exchanges.png" width="250" style="float: left; margin-right: 30px;/>
-<img src="captures/chart.png" width="250"  style="float: left;"/>
+<p>
+<img src="captures/home.png" width="250"/>
+<img src="captures/menu.png" width="250"/>
+</p>
+<p>
+<img src="captures/exchanges.png" width="250"/>
+<img src="captures/chart.png" width="250"/>
+</p>
 
 
 ## Third Party Libraries
