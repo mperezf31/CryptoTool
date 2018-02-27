@@ -3,13 +3,13 @@ CryptoTool is an application developed in kotlin that allows you to see in real 
 
 ## Features
 * List of the most popular coins
-    <img src="captures/home.png" width="250" />
-    
 * Graph with the last values of a specific coin
-    <img src="captures/chart.png" width="250" />
-    
 * List of different  exchanges
-    <img src="captures/exchanges.png" width="250" />
+
+## Captures
+<img src="captures/exchanges.png" width="250" />
+<img src="captures/home.png" width="250" />
+<img src="captures/chart.png" width="250" />
 
 
 ## Third Party Libraries
